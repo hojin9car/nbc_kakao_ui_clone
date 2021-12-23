@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+
+        function show() {
+            $('#post-box').show()
+            $('#input-button').show()
+            $('#my_btn').show()
+            $('.profile-message').hide()
+            var x = document.getElementById('comment');
+            x.innerHTML = document.getElementById('profile-message').innerHTML
+
+        }
+
+        function close_box() {
+            $('#post-box').hide()
+            $('#input-button').hide()
+            $('#my_btn').hide()
+            var y = $('#comment').val()
+            $('#profile-message').text(y)
+
+            $('#profile-message').show()
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="back-image">
+        <div class="text-box">
+            <div class="line">________</div>
+            <span class="profile-message" id="profile-message">절세미남 이호진. 내배캠에 착륙하다.</span>
+            <div class="settings" id="post-box">
+                <div class="input-group mb-3">
+                </div>
+                <div class="form-floating">
+                <textarea id="comment" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                          style="height: 100px"></textarea>
+                </div>
+                <div class="mybtns">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img class="my-photo" id="output"
+         src="https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fedcd890a-7d8d-4387-a7cf-97924284cd9d%2FUntitled.png?table=block&id=7f75483e-814b-40c6-905e-7167be91202d&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=670&userId=&cache=v2"
+         alt="profile-image">
+    <input class='settings' id="input-button" type="file" accept="image/*" onchange="loadFile(event)">
+
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+    <div class="icons">
+        <div class="tray">
+            <img class="icon" src="../static/icons/talktome.png" alt="chat self">
+            <p>나와의 채팅</p>
+        </div>
+        <div class="tray">
+            <img class="icon" onclick="show()" src="../static/icons/settings.png" alt="settings">
+            <p>프로필 관리</p>
+            <button type="button" onclick="close_box()" class="settings" id="my_btn">기록하기</button>
+        </div>
+        <div class="tray">
+            <img class="icon" src="../static/icons/story.png" alt="kakao story">
+            <p>카카오스토리</p>
+        </div>
+        <div class="btn_div">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
